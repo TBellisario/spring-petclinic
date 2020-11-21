@@ -122,7 +122,36 @@
   </dependencies>
 
   <build>
+
     <plugins>
+      <plugin>
+        <groupId>com.microsoft.azure</groupId>
+        <artifactId>azure-webapp-maven-plugin</artifactId>
+        <version>1.8.0</version>
+        <configuration>
+          <schemaVersion>v2</schemaVersion>
+          <resourceGroup>rg-theo.bellisario</resourceGroup>
+          <appServicePlanName>appservice-theo.bellisario</appServicePlanName>
+          <appName>web-theobellisario</appName>
+          <region>westeurope</region>
+          <runtime>
+              <os>linux</os>
+              <javaVersion>jre8</javaVersion>
+            </runtime>
+            <deployment>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/target</directory>
+                  <includes>
+                    <include>*.jar</include>
+                  </includes>
+                </resource>
+              </resources>
+            </deployment>
+            <stopAppDuringDeployment>true</stopAppDuringDeployment>
+        </configuration>
+      </plugin>
+
       <plugin>
         <groupId>io.spring.javaformat</groupId>
         <artifactId>spring-javaformat-maven-plugin</artifactId>
